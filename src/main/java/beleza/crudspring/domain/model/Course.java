@@ -1,4 +1,4 @@
-package beleza.crudspring.domain;
+package beleza.crudspring.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
