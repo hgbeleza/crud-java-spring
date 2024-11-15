@@ -39,4 +39,16 @@ public class CourseService {
 
         return courseRepository.save(newCourse);
     }
+    
+    public String updateCourse(Long id, CourseDto courseDto) {
+    	Course isExist = courseRepository.findById(id)
+    			.orElseThrow(() -> new RuntimeException("Course id not found"));
+    	
+    	isExist.setName(courseDto.name());
+    	isExist.setCategory(courseDto.category());
+    	
+    	courseRepository.save(isExist);
+    	
+    	return "Course saved successfully!";
+    }
 }
