@@ -40,15 +40,20 @@ public class CourseService {
         return courseRepository.save(newCourse);
     }
     
-    public String updateCourse(Long id, CourseDto courseDto) {
+    public Course updateCourse(Long id, CourseDto courseDto) {
     	Course isExist = courseRepository.findById(id)
     			.orElseThrow(() -> new RuntimeException("Course id not found"));
     	
     	isExist.setName(courseDto.name());
     	isExist.setCategory(courseDto.category());
     	
-    	courseRepository.save(isExist);
-    	
-    	return "Course saved successfully!";
+    	return courseRepository.save(isExist);
+    }
+
+    public void deleteCourse(Long id) {
+        if(!courseRepository.existsById(id)) {
+            throw new RuntimeException("Course id not found");
+        }
+        courseRepository.deleteById(id);
     }
 }
